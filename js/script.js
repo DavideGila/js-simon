@@ -4,15 +4,19 @@
 
 const numeriDaGenerare = 5;
 const numeriGenerati = [];
-const startBtn = document.querySelector('button');
+const startBtn = document.getElementById('start');
+const submitBtn = document.getElementById('submit');
+const userNum = document.querySelectorAll('input');
+const userNumWritten = [];
+const checkNum = [];
 
-startBtn.addEventListener ('click', function(){
+startBtn.addEventListener('click', function(){
     generateNum();
 });
 
 function generateNum(){
     while(numeriGenerati.length < numeriDaGenerare){
-        let num = getRndInteger (1, 100);
+        let num = getRndInteger (1, 10);
         if (!numeriGenerati.includes(num)){
             numeriGenerati.push(num);
         };
@@ -20,6 +24,18 @@ function generateNum(){
     console.log(numeriGenerati);
     return numeriGenerati;
 }
+
+submitBtn.addEventListener('click', function(){
+    for(let i = 0; i < userNum.length; i++){
+        if (!isNaN(parseInt(userNum[i].value))){
+            userNumWritten.push(parseInt(userNum[i].value));
+        }
+        if (numeriGenerati[i] === userNumWritten[i]){
+            checkNum.push(userNumWritten[i]);
+        }
+    };
+    console.log(checkNum);
+})
 
 // Utility
 function getRndInteger(min, max) {
