@@ -9,6 +9,7 @@ const submitBtn = document.getElementById('submit');
 const userNum = document.querySelectorAll('input');
 const userNumWritten = [];
 const checkNum = [];
+let msg;
 
 startBtn.addEventListener('click', function(){
     generateNum();
@@ -23,19 +24,29 @@ function generateNum(){
     }
     console.log(numeriGenerati);
     return numeriGenerati;
-}
+};
 
 submitBtn.addEventListener('click', function(){
+    let counter = 0;
     for(let i = 0; i < userNum.length; i++){
         if (!isNaN(parseInt(userNum[i].value))){
             userNumWritten.push(parseInt(userNum[i].value));
         }
         if (numeriGenerati[i] === userNumWritten[i]){
             checkNum.push(userNumWritten[i]);
+            counter++;
         }
     };
+    if (checkNum.length === numeriDaGenerare) {
+        msg = `Vittoria! Hai indovinato ${counter} numeri e sono ${checkNum.join(', ')}`;
+        console.log(msg);
+    } else {
+        msg = `Sconfitta! Hai indovinato solo ${counter} numeri e sono ${checkNum.join(', ')}`;
+        console.log(msg);
+    }
+    console.log(userNumWritten);
     console.log(checkNum);
-})
+});
 
 // Utility
 function getRndInteger(min, max) {
