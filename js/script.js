@@ -10,20 +10,30 @@ const userNum = document.querySelectorAll('input');
 const userNumWritten = [];
 const checkNum = [];
 let msg;
+let numberGenerate = document.getElementById('numbergenerate');
 
 startBtn.addEventListener('click', function(){
     generateNum();
+    numberGenerate.classList.remove('d-none');
+    timeOut();
 });
 
 function generateNum(){
     while(numeriGenerati.length < numeriDaGenerare){
-        let num = getRndInteger (1, 10);
+        let num = getRndInteger (1, 100);
         if (!numeriGenerati.includes(num)){
             numeriGenerati.push(num);
         };
     }
     console.log(numeriGenerati);
+    numberGenerate.innerHTML = numeriGenerati;
     return numeriGenerati;
+};
+
+function timeOut(){
+    setTimeout(function disappear(){
+        numberGenerate.classList.add('d-none');
+    }, 30000);
 };
 
 submitBtn.addEventListener('click', function(){
